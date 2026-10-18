@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4ead4">
+  <meta name="description" content="Santo Rosario HTML5 con misterios, oraciones, progreso y audio de voz.">
+  <title>Santo Rosario | Oración guiada</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="encabezado">
+      <div class="marca">✦</div>
+      <p class="sobretitulo">ORACIÓN Y MEDITACIÓN</p>
+      <h1>Santo Rosario</h1>
+      <p class="subtitulo">Un momento de paz, fe y contemplación</p>
+    </header>
+
+    <section id="inicio" class="panel panel-inicio">
+      <div class="ornamento">❦</div>
+      <h2>Comencemos a orar</h2>
+      <p class="texto-intro">Elige los misterios que deseas meditar o continúa donde dejaste tu oración.</p>
+
+      <div class="recomendacion-dia">
+        <p class="etiqueta">MISTERIOS RECOMENDADOS PARA HOY</p>
+        <h3 id="recomendacionDia">Misterios del día</h3>
+        <p id="diaDescripcion">Una guía para acompañar tu oración.</p>
+        <button id="btnHoy" class="boton boton-dorado" type="button">Iniciar misterios de hoy</button>
+      </div>
+
+      <h3 class="subseccion">Selecciona los misterios</h3>
+      <div class="selector-misterios">
+        <button class="misterio-opcion" type="button" data-tipo="gozosos">
+          <span class="opcion-numero">I</span><span><strong>Gozosos</strong><small>Lunes y sábado</small></span>
+        </button>
+        <button class="misterio-opcion" type="button" data-tipo="luminosos">
+          <span class="opcion-numero">II</span><span><strong>Luminosos</strong><small>Jueves</small></span>
+        </button>
+        <button class="misterio-opcion" type="button" data-tipo="dolorosos">
+          <span class="opcion-numero">III</span><span><strong>Dolorosos</strong><small>Martes y viernes</small></span>
+        </button>
+        <button class="misterio-opcion" type="button" data-tipo="gloriosos">
+          <span class="opcion-numero">IV</span><span><strong>Gloriosos</strong><small>Miércoles y domingo</small></span>
+        </button>
+      </div>
+
+      <div id="continuarGuardado" class="continuar-guardado" hidden>
+        <div>
+          <strong>Tu oración está guardada</strong>
+          <p id="textoGuardado">Puedes continuar desde el último paso.</p>
+        </div>
+        <button id="btnContinuarGuardado" class="boton boton-secundario" type="button">Continuar</button>
+      </div>
+    </section>
+
+    <section id="rosario" class="panel panel-rosario" hidden>
+      <div class="barra-superior">
+        <button id="btnVolver" class="boton-enlace" type="button">← Inicio</button>
+        <span id="tipoMisterio" class="chip">Misterios</span>
+      </div>
+
+      <div class="progreso-contenedor">
+        <div class="progreso-textos">
+          <span id="progresoTexto">Paso 1 de 1</span>
+          <span id="progresoPorcentaje">0%</span>
+        </div>
+        <div class="barra-fondo"><div id="barraProgreso" class="barra-progreso"></div></div>
+      </div>
+
+      <div class="contenido-oracion">
+        <p id="numeroMisterio" class="etiqueta">INICIO DEL ROSARIO</p>
+        <h2 id="tituloMisterio">La señal de la Santa Cruz</h2>
+        <p id="meditacion" class="meditacion"></p>
+        <div class="oracion-card">
+          <p id="tituloOracion" class="etiqueta">ORACIÓN</p>
+          <p id="textoOracion" class="texto-oracion"></p>
+        </div>
+      </div>
+
+      <section class="panel-audio" aria-label="Audio del Santo Rosario">
+        <h3>Audio de oración</h3>
+        <p id="estadoAudio" class="estado-audio" aria-live="polite">Selecciona las voces y escucha cada frase.</p>
+        <div class="selector-voces">
+          <div>
+            <label for="vozMasculina">Voz 1</label>
+            <select id="vozMasculina"><option value="">Buscando voces en español…</option></select>
+          </div>
+          <div>
+            <label for="vozFemenina">Voz 2</label>
+            <select id="vozFemenina"><option value="">Buscando voces en español…</option></select>
+          </div>
+        </div>
+        <div class="controles-audio">
+          <button class="boton boton-audio" id="btnEscuchar" type="button">▶ Escuchar frase</button>
+          <button class="boton boton-secundario" id="btnPausar" type="button">Ⅱ Pausar</button>
+          <button class="boton boton-secundario" id="btnReanudar" type="button">▶ Reanudar</button>
+          <button class="boton boton-secundario" id="btnDetener" type="button">■ Detener</button>
+        </div>
+        <p class="nota-audio">Las voces se alternan entre frases terminadas. La voz disponible depende de tu navegador y sistema operativo.</p>
+      </section>
+
+      <section class="panel-cuentas">
+        <div class="encabezado-cuentas">
+          <h3>Recorrido del Rosario</h3>
+          <p id="estadoCuentas">Pulsa una cuenta para volver a ese paso.</p>
+        </div>
+        <div id="rosarioCuentas" class="rosario-cuentas" aria-label="Cuentas interactivas del Rosario"></div>
+      </section>
+
+      <div class="controles-navegacion">
+        <button id="btnAnterior" class="boton boton-secundario" type="button">← Anterior</button>
+        <span class="ayuda-navegacion">Avanza cuando termines la oración.</span>
+      </div>
+      <div class="navegacion-flotante">
+        <button id="btnSiguiente" class="boton boton-dorado" type="button" aria-label="Continuar a la siguiente oración">Continuar →</button>
+      </div>
+      <div class="acciones-extra">
+        <button id="btnReiniciar" class="boton-enlace" type="button">Reiniciar este Rosario</button>
+      </div>
+    </section>
+
+    <section id="pantallaFinal" class="panel pantalla-final" hidden>
+      <div class="ornamento">✦</div>
+      <p class="sobretitulo">ORACIÓN COMPLETADA</p>
+      <h2>Que la paz te acompañe</h2>
+      <p>Has terminado este Santo Rosario. Que la meditación de sus misterios fortalezca tu fe y te acompañe durante el día.</p>
+      <button id="btnFinalInicio" class="boton boton-dorado" type="button">Volver al inicio</button>
+    </section>
+
+    <footer class="pie">
+      <p>Hecho para acompañar tu momento de oración</p>
+    </footer>
+  </main>
+</body>
+</html>
